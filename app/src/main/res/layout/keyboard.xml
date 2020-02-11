@@ -138,12 +138,13 @@
             android:visibility="visible">
 
             <EditText
+                android:id="@+id/beratEditText"
                 style="@style/editText_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorHint="@color/hint"
-                android:textSize="10dp"
+                android:textSize="14dp"
                 android:hint="Berat(kg)*"/>
 
         </LinearLayout>
@@ -156,15 +157,26 @@
             android:visibility="visible">
 
             <EditText
+                android:id="@+id/asalEditText"
                 style="@style/editText_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorHint="@color/hint"
-                android:textSize="10dp"
+                android:textSize="14dp"
                 android:hint="Asal pengiriman*"/>
 
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/tujuanEditText"
+            style="@style/editText_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tujuan Pengiriman*"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/hint"
+            android:textSize="14dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -172,15 +184,6 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:visibility="visible">
-
-            <EditText
-                style="@style/editText_style"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimaryDark"
-                android:textColorHint="@color/hint"
-                android:textSize="10dp"
-                android:hint="Tujuan Pengiriman*"/>
 
         </LinearLayout>
 
@@ -210,7 +213,7 @@
                 android:text="CEK ONGKOS KIRIM"
                 android:textAlignment="center"
                 android:textColor="@color/text"
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
         </LinearLayout>

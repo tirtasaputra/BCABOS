@@ -4,12 +4,14 @@ import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.media.AudioManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -19,6 +21,8 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
     private boolean capslock=false;
     private boolean punctuation=false;
     private boolean isInputConnectionExternalBOSKeyboard;
+    String focusedEditText="";
+    StringBuilder typedCharacters = new StringBuilder();
 
     private KeyboardView kv;
     private Keyboard keyboardQwerty, keyboardPunctuation;
@@ -36,6 +40,7 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
     //ONGKIR
     private LinearLayout llOngkir;
     private ImageButton btnOngkirBack;
+    private EditText etBerat, etAsal, etTujuan;
 
     @Override
     public View onCreateInputView() {
@@ -100,6 +105,39 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
     private void initiateOngkir(){
         llOngkir = root.findViewById(R.id.ongkirLinearLayout);
 
+        etBerat = root.findViewById(R.id.beratEditText);
+        etBerat.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    focusedEditText = "etBerat";
+                    typedCharacters.setLength(0);
+                }
+            }
+        });
+
+        etAsal = root.findViewById(R.id.asalEditText);
+        etAsal.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus){
+                    focusedEditText = "etAsal";
+                    typedCharacters.setLength(0);
+                }
+            }
+        });
+
+        etTujuan = root.findViewById(R.id.tujuanEditText);
+        etTujuan.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    focusedEditText = "etTujuan";
+                    typedCharacters.setLength(0);
+                }
+            }
+        });
+
         btnOngkirBack = root.findViewById(R.id.ongkirBackButton);
         btnOngkirBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,10 +158,11 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
         llHome.setVisibility(View.GONE);
         llOngkir.setVisibility(View.GONE);
         llFeature.setVisibility(View.VISIBLE);
-        changeLayoutStatus(false);
+        changeLayoutStatus(true);
     }
 
     private void showCekOngkir() {
+        llHome.setVisibility(View.GONE);
         llFeature.setVisibility(View.GONE);
         llOngkir.setVisibility(View.VISIBLE);
         changeLayoutStatus(false);
@@ -145,8 +184,8 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
 
     @Override
     public void onKey(int i, int[] ints) {
-
-        InputConnection ic = getCurrentInputConnection();
+        final InputConnection ic = getCurrentInputConnection();  //getCurrentInputConnection digunakan untuk mendapatkan koneksi ke bidang input aplikasi lain.
+        CharSequence selectedText = ic.getSelectedText(0);
         playClick(i);
         switch (i){
             case KeyboardKey.CAPSLOCK:
@@ -154,7 +193,7 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
                 setCapslock(capslock);
                 break;
             case Keyboard.KEYCODE_DELETE:
-                ic.deleteSurroundingText(1,0);
+                deleteKeyPressed(ic, selectedText);
             break;
             case Keyboard.KEYCODE_SHIFT:
                 capslock = !capslock;
@@ -172,9 +211,10 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
                 break;
                 default:
                     char code = (char) i;
-                    if (Character.isLetter(code) && capslock)
+                    if (Character.isLetter(code) && capslock){
                         code = Character.toUpperCase(code);
-                    ic.commitText(String.valueOf(code),1);
+                    }
+                    commitTextToBOSKeyboardEditText(String.valueOf(code));
         }
 
     }
@@ -240,6 +280,74 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
     private void changeKeyboardLayout(){
         InputMethodManager imeManager = (InputMethodManager) getApplicationContext().getSystemService(INPUT_METHOD_SERVICE);
         imeManager.showInputMethodPicker();
+    }
+
+    private void commitTextToBOSKeyboardEditText(String character){
+        typedCharacters.append(character);
+
+        switch (focusedEditText) {
+            case "etBerat":
+                etBerat.setText(typedCharacters);
+                etBerat.setSelection(etBerat.getText().length());
+                break;
+            case "etAsal":
+                etAsal.setText(typedCharacters);
+                etAsal.setSelection(etAsal.getText().length());
+                break;
+            case "etTujuan":
+                etTujuan.setText(typedCharacters);
+                etTujuan.setSelection(etTujuan.getText().length());
+                break;
+            default:
+                InputConnection inputConnection = getCurrentInputConnection();
+                inputConnection.commitText(character, 1);
+                break;
+        }
+
+    }
+
+    private void deleteKeyPressed(InputConnection ic, CharSequence selectedText){
+        if(isInputConnectionExternalBOSKeyboard){
+            if(TextUtils.isEmpty(selectedText)) {
+                ic.deleteSurroundingText(1, 0);
+            } else {
+                ic.commitText("", 1);
+            }
+        } else if(!isInputConnectionExternalBOSKeyboard){
+            switch (focusedEditText) {
+                case "etBerat":
+                    int etBeratLength = etBerat.getText().length();
+                    if (etBeratLength > 0) {
+                        etBerat.getText().delete(etBeratLength - 1, etBeratLength);
+                        if(typedCharacters.length()>0){
+                            typedCharacters.deleteCharAt(etBeratLength - 1);
+                        }
+                    }
+                    etBerat.setSelection(etBerat.getText().length());
+                    break;
+                case "etAsal":
+                    int etAsalLength = etAsal.getText().length();
+                    if (etAsalLength > 0) {
+                        etAsal.getText().delete(etAsalLength - 1, etAsalLength);
+                        if(typedCharacters.length()>0){
+                            typedCharacters.deleteCharAt(etAsalLength - 1);
+                        }
+                    }
+                    etAsal.setSelection(etAsal.getText().length());
+                    break;
+                case "etTujuan":
+                    int etTujuanLength = etTujuan.getText().length();
+                    if (etTujuanLength > 0) {
+                        etTujuan.getText().delete(etTujuanLength - 1, etTujuanLength);
+                        if(typedCharacters.length()>0){
+                            typedCharacters.deleteCharAt(etTujuanLength - 1);
+                        }
+                    }
+                    etTujuan.setSelection(etTujuan.getText().length());
+                    break;
+
+            }
+        }
     }
 
 }
