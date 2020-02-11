@@ -13,6 +13,8 @@
         android:background="@drawable/gradient_color_box"
         android:orientation="horizontal">
 
+
+
         <ImageButton
             android:id="@+id/bosButton"
             android:layout_width="wrap_content"
@@ -46,12 +48,22 @@
         android:orientation="horizontal"
         android:visibility="gone">
 
+        <ImageButton
+            android:id="@+id/featureBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/transparent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:src="@drawable/icon_back_white" />
+
         <Button
+            android:id="@+id/stokButton"
             android:layout_weight="1"
             android:layout_height="fill_parent"
             android:layout_width="0dp"
             android:padding="4dp"
-            android:drawableLeft="@drawable/stok_produk"
+            android:drawableLeft="@drawable/icon_stok_produk"
             android:gravity="left|center_vertical"
             android:text="Stok Produk"
             android:textAlignment="center"
@@ -61,11 +73,12 @@
             android:background="@drawable/transparent"/>
 
         <Button
+            android:id="@+id/ongkirButton"
             android:layout_weight="1"
             android:layout_height="fill_parent"
             android:layout_width="0dp"
             android:padding="4dp"
-            android:drawableLeft="@drawable/cek_ongkir"
+            android:drawableLeft="@drawable/icon_cek_ongkir"
             android:gravity="left|center_vertical"
             android:text=" Cek Ongkir"
             android:textAlignment="center"
@@ -75,11 +88,12 @@
             android:background="@drawable/transparent"/>
 
         <Button
+            android:id="@+id/formButton"
             android:layout_weight="1"
             android:layout_height="fill_parent"
             android:layout_width="0dp"
             android:padding="4dp"
-            android:drawableLeft="@drawable/kirim_form"
+            android:drawableLeft="@drawable/icon_kirim_form"
             android:gravity="left|center_vertical"
             android:text="Kirim Formulir"
             android:textAlignment="center"
@@ -89,11 +103,12 @@
             android:background="@drawable/transparent"/>
 
         <Button
+            android:id="@+id/mutasiButton"
             android:layout_weight="1"
             android:layout_height="fill_parent"
             android:layout_width="0dp"
             android:padding="4dp"
-            android:drawableLeft="@drawable/cek_mutasi"
+            android:drawableLeft="@drawable/icon_cek_mutasi"
             android:gravity="left|center_vertical"
             android:text="Cek Mutasi"
             android:textAlignment="center"
@@ -105,6 +120,102 @@
 
     </LinearLayout>
 
+    //CEK ONGKIR
+    <LinearLayout
+        android:id="@+id/ongkirLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/keyboard_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <EditText
+                style="@style/editText_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/hint"
+                android:textSize="10dp"
+                android:hint="Berat(kg)*"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <EditText
+                style="@style/editText_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/hint"
+                android:textSize="10dp"
+                android:hint="Asal pengiriman*"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <EditText
+                style="@style/editText_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/hint"
+                android:textSize="10dp"
+                android:hint="Tujuan Pengiriman*"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingRight="16dp"
+            android:visibility="visible">
+
+            <ImageButton
+                android:id="@+id/ongkirBackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/transparent"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:src="@drawable/icon_back_gradient" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_color_rounded_box"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="CEK ONGKOS KIRIM"
+                android:textAlignment="center"
+                android:textColor="@color/text"
+                android:textSize="10dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 <android.inputmethodservice.KeyboardView
     android:id="@+id/keyboard"

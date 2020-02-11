@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#269bc3</color>
     <color name="colorAccent">#D81B60</color>
 
-
+    <color name="hint">#686868</color>
     <color name="text">#f9fbfc</color>
     <color name="keyboard_background">#f0f0f1</color>
     <color name="key_background">#f9fbfc</color>

@@ -30,7 +30,12 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
 
     //FEATURE
     private LinearLayout llFeature;
+    private ImageButton btnFeatureBack;
     private Button btnCekOngkir, btnTemplateChat, btnRekapPesanan;
+
+    //ONGKIR
+    private LinearLayout llOngkir;
+    private ImageButton btnOngkirBack;
 
     @Override
     public View onCreateInputView() {
@@ -42,6 +47,7 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
         try{
             initiateMenu();
             initiateFeature();
+            initiateOngkir();
         } catch (Exception ex){
             Log.i(TAG, ex.toString());
         }
@@ -73,11 +79,53 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
 
     private void initiateFeature() {
         llFeature = root.findViewById(R.id.featureLinearLayout);
+
+        btnFeatureBack = root.findViewById(R.id.featureBackButton);
+        btnFeatureBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showHomeMenu();
+            }
+        });
+
+        btnCekOngkir = root.findViewById(R.id.ongkirButton);
+        btnCekOngkir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCekOngkir();
+            }
+        });
+    }
+
+    private void initiateOngkir(){
+        llOngkir = root.findViewById(R.id.ongkirLinearLayout);
+
+        btnOngkirBack = root.findViewById(R.id.ongkirBackButton);
+        btnOngkirBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showFeatureMenu();
+            }
+        });
+
+    }
+
+    private void showHomeMenu() {
+        llFeature.setVisibility(View.GONE);
+        llHome.setVisibility(View.VISIBLE);
+        changeLayoutStatus(true);
     }
 
     private void showFeatureMenu() {
-        llFeature.setVisibility(View.VISIBLE);
         llHome.setVisibility(View.GONE);
+        llOngkir.setVisibility(View.GONE);
+        llFeature.setVisibility(View.VISIBLE);
+        changeLayoutStatus(false);
+    }
+
+    private void showCekOngkir() {
+        llFeature.setVisibility(View.GONE);
+        llOngkir.setVisibility(View.VISIBLE);
         changeLayoutStatus(false);
     }
 
