@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bcabos">
+    package="com.example.bca_bos">
 
     <application
         android:allowBackup="true"
@@ -10,9 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service
-            android:name=".BOSBCA"
-            android:enabled="true"
-            android:exported="true"></service>
+            android:name=".KeyboardBOS"
+            android:label="BCABOS"
+            android:permission="android.permission.BIND_INPUT_METHOD">
+
+            <meta-data android:name="android.view.im" android:resource="@xml/method"/>
+            <intent-filter>
+
+                <action android:name="android.view.InputMethod"/>
+
+            </intent-filter>
+
+        </service>
 
         <activity android:name=".MainActivity">
             <intent-filter>

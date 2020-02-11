@@ -1,14 +1,122 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.inputmethodservice.KeyboardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/keyboard"
-    android:layout_alignParentBottom="true"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/keyboard_background"
+    android:orientation="vertical">
 
+    //HOME KEYBOARD
+    <LinearLayout
+        android:id="@+id/homeLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="left"
+        android:background="@drawable/gradient_color_box"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/bosButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/transparent"
+            android:padding="16dp"
+            android:src="@drawable/bca_bos_text" />
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:padding="4dp"
+            android:text="Selamat Datang"
+            android:textAlignment="center"
+            android:textColor="@color/text"
+            android:textSize="8dp"
+            android:textStyle="bold"
+            android:background="@drawable/transparent"/>
+
+
+
+    </LinearLayout>
+
+    //FITUR KEYBOARD
+    <LinearLayout
+        android:id="@+id/featureLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@drawable/gradient_color_box"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <Button
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_width="0dp"
+            android:padding="4dp"
+            android:drawableLeft="@drawable/stok_produk"
+            android:gravity="left|center_vertical"
+            android:text="Stok Produk"
+            android:textAlignment="center"
+            android:textColor="@color/text"
+            android:textSize="8dp"
+            android:textStyle="bold"
+            android:background="@drawable/transparent"/>
+
+        <Button
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_width="0dp"
+            android:padding="4dp"
+            android:drawableLeft="@drawable/cek_ongkir"
+            android:gravity="left|center_vertical"
+            android:text=" Cek Ongkir"
+            android:textAlignment="center"
+            android:textColor="@color/text"
+            android:textSize="8dp"
+            android:textStyle="bold"
+            android:background="@drawable/transparent"/>
+
+        <Button
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_width="0dp"
+            android:padding="4dp"
+            android:drawableLeft="@drawable/kirim_form"
+            android:gravity="left|center_vertical"
+            android:text="Kirim Formulir"
+            android:textAlignment="center"
+            android:textColor="@color/text"
+            android:textSize="8dp"
+            android:textStyle="bold"
+            android:background="@drawable/transparent"/>
+
+        <Button
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_width="0dp"
+            android:padding="4dp"
+            android:drawableLeft="@drawable/cek_mutasi"
+            android:gravity="left|center_vertical"
+            android:text="Cek Mutasi"
+            android:textAlignment="center"
+            android:textColor="@color/text"
+            android:textSize="8dp"
+            android:textStyle="bold"
+            android:background="@drawable/transparent"/>
+
+
+    </LinearLayout>
+
+
+<android.inputmethodservice.KeyboardView
+    android:id="@+id/keyboard"
     android:keyTextColor="@color/key"
     android:keyBackground="@drawable/key_background"
-    android:keyPreviewLayout="@color/colorPrimary"
+    android:keyPreviewLayout="@layout/key_preview"
     android:background="@color/keyboard_background"
-
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:shadowRadius="0.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    </android.inputmethodservice.KeyboardView>
 
-</android.inputmethodservice.KeyboardView>
+</LinearLayout>
