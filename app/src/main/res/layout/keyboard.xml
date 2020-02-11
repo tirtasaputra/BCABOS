@@ -131,11 +131,22 @@
         android:visibility="gone">
 
         <LinearLayout
+            android:id="@+id/beratLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="horizontal"
             android:visibility="visible">
+
+            <ImageButton
+                android:id="@+id/beratCheckButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_check"
+                android:layout_marginTop="4dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="16dp"
+                android:background="@drawable/transparent"/>
 
             <EditText
                 android:id="@+id/beratEditText"
@@ -145,16 +156,28 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorHint="@color/hint"
                 android:textSize="14dp"
-                android:hint="Berat(kg)*"/>
+                android:hint="Berat(kg)*"
+                android:selectAllOnFocus="true"/>
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/asalLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="horizontal"
             android:visibility="visible">
+
+            <ImageButton
+                android:id="@+id/asalCheckButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_check"
+                android:layout_marginTop="4dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="16dp"
+                android:background="@drawable/transparent"/>
 
             <EditText
                 android:id="@+id/asalEditText"
@@ -164,35 +187,51 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorHint="@color/hint"
                 android:textSize="14dp"
-                android:hint="Asal pengiriman*"/>
+                android:hint="Asal pengiriman*"
+                android:selectAllOnFocus="true"/>
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/tujuanEditText"
-            style="@style/editText_style"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Tujuan Pengiriman*"
-            android:textColor="@color/colorPrimaryDark"
-            android:textColorHint="@color/hint"
-            android:textSize="14dp" />
+
 
         <LinearLayout
+            android:id="@+id/tujuanLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="horizontal"
             android:visibility="visible">
 
+            <ImageButton
+                android:id="@+id/tujuanCheckButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_check"
+                android:layout_marginTop="4dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="16dp"
+                android:background="@drawable/transparent"/>
+
+            <EditText
+                android:id="@+id/tujuanEditText"
+                style="@style/editText_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/hint"
+                android:textSize="14dp"
+                android:hint="Tujuan Pengiriman*"
+                android:selectAllOnFocus="true"/>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/cekOngkirLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingRight="16dp"
+            android:layout_marginBottom="8dp"
             android:visibility="visible">
 
             <ImageButton
