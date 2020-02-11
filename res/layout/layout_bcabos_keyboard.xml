@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!--HOME KEYBOARD-->
+    <LinearLayout
+        android:id="@+id/bcabos_extended_home_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="start"
+        android:background="@drawable/gradient_color_box"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/bcabos_extended_home_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:padding="16dp"
+            android:src="@drawable/ic_bcabos_text_white" />
+
+        <Button
+            android:id="@+id/bcabos_extended_templatedtext_button"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:padding="4dp"
+            android:text="Selamat Datang"
+            android:textAlignment="center"
+            android:textColor="@color/dark_white"
+            android:textSize="8dp"
+            android:textStyle="bold"
+            android:background="@android:color/transparent"/>
+    </LinearLayout>
+
+    <!--FITUR KEYBOARD-->
+    <LinearLayout
+        android:id="@+id/bcabos_extended_feature_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="@drawable/gradient_color_box"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/bcabos_extended_feature_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_keyboard_arrow_back_white_24dp" />
+
+        <Button
+            android:id="@+id/bcabos_extended_feature_stok_button"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_width="0dp"
+            android:padding="4dp"
+            android:drawableLeft="@drawable/ic_bcabos_stok_produk"
+            android:gravity="left|center_vertical"
+            android:text="Stok Produk"
+            android:textAlignment="center"
+            android:textColor="@color/dark_white"
+            android:textSize="8dp"
+            android:textStyle="bold"
+            android:background="@android:color/transparent"/>
+
+        <Button
+            android:id="@+id/bcabos_extended_feature_ongkir_button"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_width="0dp"
+            android:padding="4dp"
+            android:drawableLeft="@drawable/ic_bcabos_cek_ongkir"
+            android:gravity="left|center_vertical"
+            android:text=" Cek Ongkir"
+            android:textAlignment="center"
+            android:textColor="@color/dark_white"
+            android:textSize="8dp"
+            android:textStyle="bold"
+            android:background="@android:color/transparent"/>
+
+        <Button
+            android:id="@+id/bcabos_extended_feature_form_button"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_width="0dp"
+            android:padding="4dp"
+            android:drawableLeft="@drawable/ic_bcabos_kirim_form"
+            android:gravity="left|center_vertical"
+            android:text="Kirim Formulir"
+            android:textAlignment="center"
+            android:textColor="@color/dark_white"
+            android:textSize="8dp"
+            android:textStyle="bold"
+            android:background="@android:color/transparent"/>
+
+        <Button
+            android:id="@+id/bcabos_extended_feature_mutasi_button"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_width="0dp"
+            android:padding="4dp"
+            android:drawableLeft="@drawable/ic_bcabos_cek_mutasi"
+            android:gravity="left|center_vertical"
+            android:text="Cek Mutasi"
+            android:textAlignment="center"
+            android:textColor="@color/dark_white"
+            android:textSize="8dp"
+            android:textStyle="bold"
+            android:background="@android:color/transparent"/>
+    </LinearLayout>
+
+    <!--KEYBOARD-->
+    <android.inputmethodservice.KeyboardView
+        android:id="@+id/bcabos_keyboard_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp"
+
+        android:keyTextColor="@color/key_text_color"
+        android:keyBackground="@drawable/style_keyboard_key_background"
+
+        android:shadowRadius="0.0"
+        android:background="@color/light_grey">
+    </android.inputmethodservice.KeyboardView>
+
+</LinearLayout>

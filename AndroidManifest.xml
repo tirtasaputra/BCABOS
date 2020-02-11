@@ -1,0 +1,21 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.bcaboskeyboard">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_bcabos"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_bcabos_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <service
+            android:name=".BCABOSKeyboardInputMethod"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_INPUT_METHOD">
+            <meta-data android:name="android.view.im" android:resource="@layout/method_bcabos_keyboard"/>
+            <intent-filter>
+                <action android:name="android.view.InputMethod"/>
+            </intent-filter>
+        </service>
+    </application>
+</manifest>
