@@ -7,6 +7,7 @@ import android.media.AudioManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
@@ -38,8 +39,8 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
     private Button btnCekOngkir, btnTemplateChat, btnRekapPesanan;
 
     //ONGKIR
-    private LinearLayout llOngkir;
-    private ImageButton btnOngkirBack;
+    private LinearLayout llOngkir, llBerat, llAsal, llTujuan, llCekOngkir;
+    private ImageButton btnOngkirBack, btnBeratCheck, btnAsalCheck, btnTujuanCheck;
     private EditText etBerat, etAsal, etTujuan;
 
     @Override
@@ -97,13 +98,17 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
         btnCekOngkir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showCekOngkir();
+                showOngkir();
             }
         });
     }
 
     private void initiateOngkir(){
         llOngkir = root.findViewById(R.id.ongkirLinearLayout);
+        llBerat = root.findViewById(R.id.beratLinearLayout);
+        llAsal = root.findViewById(R.id.asalLinearLayout);
+        llTujuan = root.findViewById(R.id.tujuanLinearLayout);
+        llCekOngkir = root.findViewById(R.id.cekOngkirLinearLayout);
 
         etBerat = root.findViewById(R.id.beratEditText);
         etBerat.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -113,6 +118,20 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
                     focusedEditText = "etBerat";
                     typedCharacters.setLength(0);
                 }
+            }
+        });
+        etBerat.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                showBeratMenu();
+                return false;
+            }
+        });
+        btnBeratCheck = root.findViewById(R.id.beratCheckButton);
+        btnBeratCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAsalMenu();
             }
         });
 
@@ -126,6 +145,20 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
                 }
             }
         });
+        etAsal.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                showAsalMenu();
+                return false;
+            }
+        });
+        btnAsalCheck = root.findViewById(R.id.asalCheckButton);
+        btnAsalCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showTujuanMenu();
+            }
+        });
 
         etTujuan = root.findViewById(R.id.tujuanEditText);
         etTujuan.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -135,6 +168,20 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
                     focusedEditText = "etTujuan";
                     typedCharacters.setLength(0);
                 }
+            }
+        });
+        etTujuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showTujuanMenu();
+            }
+        });
+        btnTujuanCheck = root.findViewById(R.id.tujuanCheckButton);
+        btnTujuanCheck.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                showOngkir();
+                return false;
             }
         });
 
@@ -149,23 +196,64 @@ public class KeyboardBOS extends InputMethodService implements KeyboardView.OnKe
     }
 
     private void showHomeMenu() {
+        showAllMenu();
         llFeature.setVisibility(View.GONE);
-        llHome.setVisibility(View.VISIBLE);
+        llOngkir.setVisibility(View.GONE);
         changeLayoutStatus(true);
     }
 
     private void showFeatureMenu() {
+        showAllMenu();
         llHome.setVisibility(View.GONE);
         llOngkir.setVisibility(View.GONE);
-        llFeature.setVisibility(View.VISIBLE);
         changeLayoutStatus(true);
     }
 
-    private void showCekOngkir() {
+    private void showOngkir() {
+        showAllMenu();
+        kv.setVisibility(View.GONE);
         llHome.setVisibility(View.GONE);
         llFeature.setVisibility(View.GONE);
-        llOngkir.setVisibility(View.VISIBLE);
         changeLayoutStatus(false);
+    }
+
+    private void showBeratMenu() {
+        showAllMenu();
+        llHome.setVisibility(View.GONE);
+        llFeature.setVisibility(View.GONE);
+        llAsal.setVisibility(View.GONE);
+        llTujuan.setVisibility(View.GONE);
+        llCekOngkir.setVisibility(View.GONE);
+        changeLayoutStatus(false);
+    }
+
+    private void showAsalMenu() {
+        showAllMenu();
+        llHome.setVisibility(View.GONE);
+        llFeature.setVisibility(View.GONE);
+        llBerat.setVisibility(View.GONE);
+        llTujuan.setVisibility(View.GONE);
+        llCekOngkir.setVisibility(View.GONE);
+    }
+
+    private void showTujuanMenu() {
+        showAllMenu();
+        llHome.setVisibility(View.GONE);
+        llFeature.setVisibility(View.GONE);
+        llBerat.setVisibility(View.GONE);
+        llAsal.setVisibility(View.GONE);
+        llCekOngkir.setVisibility(View.GONE);
+    }
+
+    private void showAllMenu(){
+        kv.setVisibility(View.VISIBLE);
+        llHome.setVisibility(View.VISIBLE);
+        llFeature.setVisibility(View.VISIBLE);
+        llBerat.setVisibility(View.VISIBLE);
+        llAsal.setVisibility(View.VISIBLE);
+        llTujuan.setVisibility(View.VISIBLE);
+        llCekOngkir.setVisibility(View.VISIBLE);
+        llOngkir.setVisibility(View.VISIBLE);
     }
 
     private void changeLayoutStatus(Boolean homeStatus){
